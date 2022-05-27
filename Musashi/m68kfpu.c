@@ -5,7 +5,7 @@
 
 extern void exit(int);
 
-static __attribute__((noreturn)) void fatalerror(char *format, ...) {
+static void fatalerror(char *format, ...) {
       va_list ap;
       va_start(ap,format);
       fprintf(stderr,format,ap);
