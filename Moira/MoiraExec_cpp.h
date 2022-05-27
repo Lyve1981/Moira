@@ -536,11 +536,15 @@ Moira::execBsr(u16 opcode)
 {
     EXEC_DEBUG
     
-    i16 offset = S == Word ? (i16)queue.irc : (i8)opcode;
-     
-    u32 newpc = U32_ADD(reg.pc, offset);
-    u32 retpc = U32_ADD(reg.pc, S == Word ? 2 : 0);
+    i32 offset = S == Word ? (i16)queue.irc : (i8)opcode;
+    if (S == Long)
+    {
+        offset=read16(reg.pc);
+        offset=(offset<<16) | read16(reg.pc+2);
+    }
 
+    u32 newpc = U32_ADD(reg.pc, offset);
+    u32 retpc = U32_ADD(reg.pc, (S == Long) ? 4 : ((S == Word) ? 2 : 0));
     // Check for address error
     if (misaligned<Word>(newpc)) {
         execAddressError(makeFrame(newpc));

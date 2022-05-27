@@ -436,10 +436,10 @@ Moira::createJumpTables()
 
     opcode = parse("0110 0001 ---- ----");
     bind(opcode, Bsr, BSR, MODE_IP, Word);
-    for (int i = 1; i <= 0xFF; i++) {
+    for (int i = 1; i < 0xFF; i++) {
         bind(opcode | i, Bsr, BSR, MODE_IP, Byte);
     }
-
+    bind(opcode | 0xFF, Bsr, BSR, MODE_IP, Long);
     // BTST
     //
     //       Syntax: (1) BTST Dx,<ea>
