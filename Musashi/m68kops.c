@@ -34506,7 +34506,7 @@ static void m68k_op_tblu(void)
 	int rd=REG_D[dx]&0xffff;
 	const int radix=8;
 	int frac=rd&((1<<radix)-1);
-	int address=tablePtr+(rd>>radix);
+	int address=tablePtr+(rd>>radix)*4;
 	
 	int a=m68ki_read_32(address),b=m68ki_read_32(address+4);
 	long long diff=b-a;
