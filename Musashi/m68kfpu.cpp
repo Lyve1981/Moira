@@ -4,14 +4,11 @@
 
 #include "m68kcpu.h"
 
-extern void exit(int);
-
 static void fatalerror(const char *format, ...) {
       va_list ap;
       va_start(ap,format);
       vfprintf(stderr,format,ap);  // JFF: fixed. Was using fprintf and arguments were wrong
       va_end(ap);
-      exit(1);
 }
 
 #define FPCC_N			0x08000000
@@ -23,7 +20,7 @@ static void fatalerror(const char *format, ...) {
 #define DOUBLE_EXPONENT					(unsigned long long)(0x7ff0000000000000)
 #define DOUBLE_MANTISSA					(unsigned long long)(0x000fffffffffffff)
 
-extern char floatx80_is_nan( floatx80 a );
+extern flag floatx80_is_nan( floatx80 a );
 
 // masks for packed dwords, positive k-factor
 static uint32 pkmask2[18] =
