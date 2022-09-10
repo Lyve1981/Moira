@@ -30819,8 +30819,8 @@ static void m68k_op_stop(m68ki_cpu_core* m68ki_cpu)
 		m68ki_trace_t0();			   /* auto-disable (see m68kcpu.h) */
 		CPU_STOPPED |= STOP_LEVEL_STOP;
 		m68ki_set_sr(m68ki_cpu, new_sr);
-		if(m68ki_remaining_cycles >= CYC_INSTRUCTION[REG_IR])
-			m68ki_remaining_cycles = CYC_INSTRUCTION[REG_IR];
+		if(m68ki_cpu->m68ki_remaining_cycles >= CYC_INSTRUCTION[REG_IR])
+			m68ki_cpu->m68ki_remaining_cycles = CYC_INSTRUCTION[REG_IR];
 		else
 			USE_ALL_CYCLES();
 		return;

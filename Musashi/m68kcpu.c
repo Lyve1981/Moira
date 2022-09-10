@@ -55,8 +55,6 @@ extern void m68ki_build_opcode_table(void);
 /* ================================= DATA ================================= */
 /* ======================================================================== */
 
-int  m68ki_initial_cycles;
-int  m68ki_remaining_cycles = 0;                     /* Number of clocks remaining */
 uint m68ki_tracing = 0;
 uint m68ki_address_space;
 
@@ -956,7 +954,7 @@ int m68k_execute(m68ki_cpu_core* m68ki_cpu, int num_cycles)
 
 	/* Set our pool of clock cycles available */
 	SET_CYCLES(num_cycles);
-	m68ki_initial_cycles = num_cycles;
+	m68ki_cpu->m68ki_initial_cycles = num_cycles;
 
 	/* See if interrupts came in */
 	m68ki_check_interrupts(m68ki_cpu);
@@ -1009,31 +1007,31 @@ int m68k_execute(m68ki_cpu_core* m68ki_cpu, int num_cycles)
 		SET_CYCLES(0);
 
 	/* return how many clocks we used */
-	return m68ki_initial_cycles - GET_CYCLES();
+	return m68ki_cpu->m68ki_initial_cycles - GET_CYCLES();
 }
 
 
-int m68k_cycles_run(void)
+int m68k_cycles_run(m68ki_cpu_core* m68ki_cpu)
 {
-	return m68ki_initial_cycles - GET_CYCLES();
+	return m68ki_cpu->m68ki_initial_cycles - GET_CYCLES();
 }
 
-int m68k_cycles_remaining(void)
+int m68k_cycles_remaining(m68ki_cpu_core* m68ki_cpu)
 {
 	return GET_CYCLES();
 }
 
 /* Change the timeslice */
-void m68k_modify_timeslice(int cycles)
+void m68k_modify_timeslice(m68ki_cpu_core* m68ki_cpu, int cycles)
 {
-	m68ki_initial_cycles += cycles;
+	m68ki_cpu->m68ki_initial_cycles += cycles;
 	ADD_CYCLES(cycles);
 }
 
 
-void m68k_end_timeslice(void)
+void m68k_end_timeslice(m68ki_cpu_core* m68ki_cpu)
 {
-	m68ki_initial_cycles = GET_CYCLES();
+	m68ki_cpu->m68ki_initial_cycles = GET_CYCLES();
 	SET_CYCLES(0);
 }
 
