@@ -41,11 +41,6 @@
 #include "m68kops.h"
 #include "m68kcpu.h"
 
-#ifdef __cplusplus
-extern "C"
-{
-#endif
-
 extern void m68040_fpu_op0(m68ki_cpu_core* m68ki_cpu);
 extern void m68040_fpu_op1(m68ki_cpu_core* m68ki_cpu);
 extern void m68881_mmu_ops(m68ki_cpu_core* m68ki_cpu);
@@ -1216,10 +1211,6 @@ void m68k_state_register(const char *type, int index)
 }
 
 #endif /* M68K_COMPILE_FOR_MAME */
-
-#ifdef __cplusplus
-}
-#endif
 
 /* ======================================================================== */
 /* ============================== END OF FILE ============================= */

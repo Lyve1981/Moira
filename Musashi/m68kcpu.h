@@ -33,11 +33,11 @@
 #ifndef M68KCPU__HEADER
 #define M68KCPU__HEADER
 
-#include "m68k.h"
-
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+#include "m68k.h"
 
 #include <limits.h>
 
