@@ -1,9 +1,9 @@
 add_library(musashi STATIC
 
-m68kfpu.cpp
-m68kcpu.cpp
-m68kdasm.cpp
-m68kops.cpp
+m68kfpu.c
+m68kcpu.c
+m68kdasm.c
+m68kops.c
 )
 
 target_compile_options(musashi PUBLIC -Wno-strict-aliasing)

@@ -923,9 +923,7 @@ typedef union
 	double f;
 } fp_reg;
 
-struct m68ki_cpu_core;
-
-struct m68ki_cpu_core
+struct m68ki_cpu_core_
 {
 	uint cpu_type;     /* CPU Type: 68000, 68008, 68010, 68EC020, 68020, 68EC030, 68030, 68EC040, or 68040 */
 	uint dar[16];      /* Data and Address Registers */

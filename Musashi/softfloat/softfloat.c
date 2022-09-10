@@ -32,9 +32,6 @@ these four paragraphs for those parts of this code that are retained.
 
 #include "../m68kcpu.h" // which includes softfloat.h after defining the basic types
 
-extern "C"
-{
-
 /*----------------------------------------------------------------------------
 | Floating-point rounding mode, extended double-precision rounding precision,
 | and exception flags.
@@ -4941,4 +4938,3 @@ flag float128_lt_quiet( float128 a, float128 b )
 }
 
 #endif
-}

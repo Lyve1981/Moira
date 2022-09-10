@@ -175,7 +175,7 @@ typedef enum
  *       USER mode, but it is also slower.
  */
 
-struct m68ki_cpu_core;
+typedef struct m68ki_cpu_core_ m68ki_cpu_core;
 
 /* Read from anywhere */
 unsigned int  m68k_read_memory_8(m68ki_cpu_core* core, unsigned int address);

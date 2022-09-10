@@ -4,9 +4,6 @@
 
 #include "m68kcpu.h"
 
-extern "C"
-{
-
 static void fatalerror(const char *format, ...) {
       va_list ap;
       va_start(ap,format);
@@ -1765,5 +1762,4 @@ void m68040_fpu_op1(m68ki_cpu_core* m68ki_cpu)
 
 		default:	fatalerror("m68040_fpu_op1: unimplemented op %d at %08X\n", (REG_IR >> 6) & 0x3, REG_PC-2);
 	}
-}
 }

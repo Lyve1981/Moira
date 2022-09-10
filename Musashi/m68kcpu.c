@@ -53,7 +53,7 @@ extern unsigned char m68ki_cycles[][0x10000];
 extern void (*m68ki_instruction_jump_table[0x10000])(m68ki_cpu_core*); /* opcode handler jump table */
 extern void m68ki_build_opcode_table(void);
 
-#include "m68kfpu.cpp"
+#include "m68kfpu.c"
 #include "m68kmmu.h" // uses some functions from m68kfpu.c which are static !
 
 /* ======================================================================== */
@@ -555,7 +555,7 @@ static void default_bkpt_ack_callback(m68ki_cpu_core* m68ki_cpu, unsigned int da
 }
 
 /* Called when a reset instruction is executed */
-static void default_reset_instr_callback(m68ki_cpu_core*)
+static void default_reset_instr_callback(m68ki_cpu_core* m68ki_cpu)
 {
 }
 
